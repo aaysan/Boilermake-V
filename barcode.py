@@ -1,5 +1,5 @@
 from pyzbar.pyzbar import decode
-from urllib.parse import urlparse
+from urllib2 import urlparse
 from PIL import Image
 from pprint import *
 import requests as r
@@ -61,7 +61,7 @@ def detect(imagepath):
 def getBarcode(imagepath):
 	# input image path
 	# output string of barcode
-	h = decode(Image.open('barcode_01.jpg'))
+	h = decode(Image.open('pic1.jpeg'))
 	if (len(h) < 1): return None
 	return h[0].data.decode('utf-8')
 
@@ -76,3 +76,5 @@ def main():
 	barcode = getBarcode('barcode_01.jpg')
 	if barcode is None: return "barcode not found"
 	return getTitle(barcode)
+
+print getBarcode("hello")
