@@ -1,5 +1,5 @@
 from pyzbar.pyzbar import decode
-from urllib.parse import urlparse
+from urllib2 import urlparse
 from PIL import Image
 from pprint import *
 import requests as r

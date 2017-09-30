@@ -1,3 +1,4 @@
+#need to install clarify (pip)
 from clarifai.rest import ClarifaiApp
 from clarifai.rest import Image as ClImage
 import pprint
@@ -21,4 +22,5 @@ def fooditem(new_image):
     #print r['outputs'][0]['data']['concepts'][3]['name'] #Option 4
     #print r['outputs'][0]['data']['concepts'][4]['name'] #Option 5
 
-print fooditem("test.jpg")
+items = fooditem("test.jpg")
+print items
