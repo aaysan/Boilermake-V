@@ -21,6 +21,3 @@ def fooditem(new_image):
     #print r['outputs'][0]['data']['concepts'][2]['name'] #Option 3
     #print r['outputs'][0]['data']['concepts'][3]['name'] #Option 4
     #print r['outputs'][0]['data']['concepts'][4]['name'] #Option 5
-
-items = fooditem("test.jpg")
-print items
