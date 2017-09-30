@@ -4,12 +4,16 @@ from PIL import Image
 from pprint import *
 import requests as r
 
+# pip install pyzbar
+# pip install pyzbar[scripts]
+
 BARCODE_API = 'https://api.upcitemdb.com/prod/trial/lookup?upc='
 
 def getBarcode(imagepath):
 	# input image path
 	# output string of barcode
 	h = decode(Image.open('barcode_01.jpg'))
+	if (len(h) < 1): return None
 	return h[0].data.decode('utf-8')
 
 def getTitle(barcode):
@@ -19,6 +23,7 @@ def getTitle(barcode):
 	return tmp['items'][0]['title']
 
 
-if __name__ == '__main__':
+def main():
 	barcode = getBarcode('barcode_01.jpg')
-	print(getTitle(barcode))
+	if barcode is None: return "barcode not found"
+	return getTitle(barcode)
