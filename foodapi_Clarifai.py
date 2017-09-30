@@ -3,9 +3,9 @@ from clarifai.rest import Image as ClImage
 import pprint
 app = ClarifaiApp(api_key='e5af645934f34cee8ec140028c1fff12')
 
-def fooditem(image):
+def fooditem(new_image):
     model = app.models.get('food-items-v1.0')
-    image = ClImage(file_obj=open('test.jpg', 'rb'))
+    image = ClImage(file_obj=open(new_image, 'rb'))
     r =  model.predict([image])
     #pprint.pprint(model.predict([image]))
     food_items = {r['outputs'][0]['data']['concepts'][0]['name']+ \
