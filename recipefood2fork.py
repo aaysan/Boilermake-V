@@ -1,5 +1,5 @@
-import urllib2
-import urllib
+#import urllib2
+import requests as r
 import json
 from functools import partial
 import pprint
@@ -24,9 +24,10 @@ class food2fork(): #food2fork api call class
        'Accept-Encoding': 'none',
        'Accept-Language': 'en-US,en;q=0.8',
        'Connection': 'keep-alive'} #header info so request is not banned
-        req = urllib2.Request(url,None,headers=hdr)
-        f = urllib2.urlopen(req)
-        data = json.loads(f.read())
+        # req = urllib2.Request(url,None,headers=hdr)
+        # f = urllib2.urlopen(req)
+        req = r.put(url,data=hdr)
+        data = json.loads(req.text)
         return data
 
     def get(self,id1):
@@ -38,17 +39,20 @@ class food2fork(): #food2fork api call class
        'Accept-Encoding': 'none',
        'Accept-Language': 'en-US,en;q=0.8',
        'Connection': 'keep-alive'} #header info so request is not banned
-        req = urllib2.Request(url,None,headers=hdr)
-        f = urllib2.urlopen(req)
-        data = json.loads(f.read())
+        req = r.put(url,data=hdr)
+        data = json.loads(req.text)
         return data
         
 
-    
-f2f = food2fork()
-sr = f2f.search("Chicken biryani") #search results
-#pprint.pprint(sr)
-gr = f2f.get(sr['recipes'][0]['recipe_id']) #get results
-ingredients = gr['recipe']['ingredients']
-print ingredients
+def get_recipe(item):
+    ingredients = []
+    f2f = food2fork()
+    sr = f2f.search(item) #search results
+    #pprint.pprint(sr)
+    for i in range(5):
+        gr = f2f.get(sr['recipes'][i]['recipe_id'])#get results
+        #pprint.pprint(gr)
+        ingredients += [gr['recipe']['ingredients']]
+    return ingredients
 
+# pprint.pprint(get_recipe("pad thai"))
