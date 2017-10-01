@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/duanyuqin/Documents/BoilerMake/Boilermake-V/What'sThere/app/build/intermediates/res/merged/debug/animator/anim.xml",
+        "source": "/Users/duanyuqin/Documents/BoilerMake/Boilermake-V/What'sThere/app/src/main/res/animator/anim.xml"
+    },
+    {
+        "merged": "/Users/duanyuqin/Documents/BoilerMake/Boilermake-V/What'sThere/app/build/intermediates/res/merged/debug/animator/left_out.xml",
+        "source": "/Users/duanyuqin/Documents/BoilerMake/Boilermake-V/What'sThere/app/src/main/res/animator/left_out.xml"
+    }
+]
