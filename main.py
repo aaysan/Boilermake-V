@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask, request
 import camera
 import recipefood2fork as recipe_api
 import barcode
 import foodapi_Clarifai as clarifai_api
 import food_api as food_api
+import push_to_mongo as add
 
 # pip install Flask
 
@@ -15,6 +16,13 @@ app = Flask(__name__)
 @app.route('/')
 def barcode():
 	return "hello world"
+
+@app.route('/add/<string1>')
+def addfood(string1):
+	print(string1)
+	foodstr, amtadd, exp = string1.split(' ')
+	add.push_to_mongo(foodstr, int(amtadd), int(exp))
+	return foodstr + " " + amtadd + " " + exp
 
 # @app.route('/barcode')
 # def barcode():
