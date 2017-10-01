@@ -15,17 +15,33 @@ def push_to_mongo(foodstr, amounttoadd, possibexp):
 
     food = foodstr; #this will come in
     item = foodinventory.find_one({"food":food})
+    todaysdate = datetime.datetime.utcnow()
+    expirydate = todaysdate + datetime.timedelta(days=possibexp)
 
 
     if(item == None):
         newitem = {"food": food,
                 "amount": amount,
-                "dateAdded": datetime.datetime.utcnow(),
-                "PossibleExpiry": [{"Date": possibleExpiry,
+                "dateAdded": todaysdate,
+                "PossibleExpiry": [{"Date": expirydate,
                                     "amt":  amount
                 }]}
         foodinventory.insert_one(newitem)
     else:
         foodinventory.update_one({'food':food}, { '$inc': {'amount': amount}})
-        foodinventory.update({'food':food},
-                                { '$push': {'PossibleExpiry':{"Date": possibleExpiry,"amt":  amount}}})
+        flag = 0
+        items = list(foodinventory.find({'food':food}))
+        print items
+        for item in items:
+            print item['PossibleExpiry'][0]['Date']
+            print expirydate
+            if item['PossibleExpiry'][0]['Date'].date() == expirydate.date():
+                item['PossibleExpiry'][0]['amt'] += amount
+                foodinventory.update_one({'food':food}, {'$set':{ 'PossibleExpiry': item['PossibleExpiry']}})
+                #item['PossibleExpiry'][0]['amt'] += amount
+                flag = 1
+                break
+
+        if flag != 1:
+            foodinventory.update({'food':food},
+                                { '$push': {'PossibleExpiry':{"Date": expirydate,"amt":  amount}}})
