@@ -8,7 +8,7 @@ import pprint
 class food2fork(): #food2fork api call class
   
     def __init__(self,debug=True):
-        self.apiKey = '659e07599169d079170d7db52af74c0d'
+        self.apiKey = '2c77b139277a69749964b3f865acba70'
        
 
     def search(self,query):
