@@ -31,7 +31,7 @@ def object():
 		candidates.append(candidate)
 	while len(candidates) < 10:
 		candidates.append("")
-	return str(candidates)
+	return ";".join(candidates)
 
 @app.route('/recipe/<recipe>')
 def getrecipes(recipe):
@@ -47,7 +47,7 @@ def getrecipes(recipe):
 				found = True
 		if not found:
 			missing.append(ingredient)
-	return str(missing)
+	return ";".join(missing)
 
 
 
