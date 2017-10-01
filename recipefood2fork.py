@@ -46,13 +46,18 @@ class food2fork(): #food2fork api call class
 
 def get_recipe(item):
     ingredients = []
+    recipes = []
     f2f = food2fork()
     sr = f2f.search(item) #search results
     #pprint.pprint(sr)
     for i in range(5):
-        gr = f2f.get(sr['recipes'][i]['recipe_id'])#get results
-        #pprint.pprint(gr)
-        ingredients += [gr['recipe']['ingredients']]
-    return ingredients
+      try:
+          gr = f2f.get(sr['recipes'][i]['recipe_id'])#get results
+          #pprint.pprint(gr)
+          ingredients += [gr['recipe']['ingredients']]
+          recipes.append(gr['recipe']['title'])
+      except:
+          break
+    return ingredients, recipes
 
 # pprint.pprint(get_recipe("pad thai"))

@@ -14,6 +14,8 @@ def fooditem(new_image):
 
 	params = (
 	    ('user_key', 'bef7083a603ab9155793a863d466d6c7'),
+	    #('user_key', 'ddc40232c609f21b0c45e0bc81c23125'), # real
+	    
 	)
 
 	data = open(save, 'rb').read()
@@ -26,6 +28,7 @@ def fooditem(new_image):
 	n = len(m)
 	count = 0
 	final = []
+	if 'results' not in m: return []
 	for i in m['results']:
 	    if count>4:
 	        break

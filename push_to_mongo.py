@@ -18,7 +18,6 @@ def push_to_mongo(foodstr, amounttoadd, possibexp):
     todaysdate = datetime.datetime.utcnow()
     expirydate = todaysdate + datetime.timedelta(days=possibexp)
 
-
     if(item == None):
         newitem = {"food": food,
                 "amount": amount,
@@ -31,10 +30,12 @@ def push_to_mongo(foodstr, amounttoadd, possibexp):
         foodinventory.update_one({'food':food}, { '$inc': {'amount': amount}})
         flag = 0
         items = list(foodinventory.find({'food':food}))
-        print items
+        print(items)
         for item in items:
-            print item['PossibleExpiry'][0]['Date']
-            print expirydate
+            if (item is None or len(item['PossibleExpiry']) == 0 or item['PossibleExpiry'][0] is None):
+                break
+            print( item['PossibleExpiry'][0]['Date'])
+            print (expirydate)
             if item['PossibleExpiry'][0]['Date'].date() == expirydate.date():
                 item['PossibleExpiry'][0]['amt'] += amount
                 foodinventory.update_one({'food':food}, {'$set':{ 'PossibleExpiry': item['PossibleExpiry']}})
