@@ -1,4 +1,4 @@
-# Boilermake-V
+# What's There? The Kitchen Inventory Management Application
 Smart home Kitchen inventory management system. Ingredients and recipe search with android application using MangoDB database and current kitchen ingredients.
 
 How to Use (currently):
