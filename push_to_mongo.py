@@ -3,9 +3,7 @@ import pymongo
 from pymongo import MongoClient
 import datetime
 import pprint
-cluster = MongoClient('mongodb://maysan:Horizon96*@boilermakev-shard-00-00-uhw0t.mongodb.net:27017,\
-boilermakev-shard-00-01-uhw0t.mongodb.net:27017,boilermakev-shard-00-02-uhw0t.mongodb.\
-net:27017/inventory?ssl=true&replicaSet=BoilermakeV-shard-0&authSource=admin')
+cluster = MongoClient('mongodthSource=admin')
 def push_to_mongo(foodstr, amounttoadd, possibexp):
     db = cluster.inventory ##database
     foodinventory = db.foods ##collection
