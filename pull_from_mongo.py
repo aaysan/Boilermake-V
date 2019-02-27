@@ -4,8 +4,7 @@ import datetime
 import pprint
 
 def pull_from_mongo(removedfood, removedamount):
-	cluster = MongoClient('mongodb://maysan:Horizon96*@boilermakev-shard-00-00-uhw0t.mongodb.net:27017,\
-	boilermakev-shard-00-01-uhw0t.mongodb.net:27017,boilermakev-shard-00-02-uhw0t.mongodb.\
+	cluster = MongoClient('mongodb://
 	net:27017/inventory?ssl=true&replicaSet=BoilermakeV-shard-0&authSource=admin')
 
 	db = cluster.inventory
